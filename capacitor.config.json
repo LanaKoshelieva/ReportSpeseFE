@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ReportSpese",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
