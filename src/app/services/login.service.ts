@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { LoginCommand } from 'src/app/model/command/login-command';
+import { ResponseDTO } from '../model/DTO/response-dto';
 import { UserDTO } from '../model/DTO/user-dto';
 
 @Injectable({
@@ -8,7 +10,8 @@ import { UserDTO } from '../model/DTO/user-dto';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   logIn(email:string, password:string)
   {
@@ -25,11 +28,22 @@ export class LoginService {
     localStorage.setItem("userPassword", user.passwordHash);
   }
 
-  logOut()
+  async logOut()
   {
     localStorage.removeItem("userId");
     localStorage.removeItem("userMail");
     localStorage.removeItem("userPassword");
+    await this.router.navigate(['/login']);
+  }
+
+  async checkResponse(r:ResponseDTO)
+  {
+    if(r.code == 401)
+    {
+      await this.logOut();
+      return false;
+    }
+    return true;
   }
 
 }

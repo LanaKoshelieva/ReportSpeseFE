@@ -9,6 +9,7 @@ import { ReceiptDTO } from 'src/app/model/DTO/receipt-dto';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertController } from '@ionic/angular';
 import { el } from 'date-fns/locale';
+import { LoginService } from 'src/app/services/login.service';
 Chart.register(...registerables);
 
 @Component({
@@ -30,11 +31,16 @@ export class GraphicsPage implements OnInit {
     private profileService: ProfileService,
     private searchService: SearchService,
     private alertService: AlertService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private loginService: LoginService
   ) {}
 
-  ngOnInit() {
-
+  ngOnInit() 
+  {}
+  
+  ngAfterViewInit() 
+  {
+    this.getReceipts(2022);
   }
 
   async presentAlert() 
@@ -91,10 +97,6 @@ export class GraphicsPage implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    this.getReceipts(2022);
-  }
-
   changeYear(year)
   {
     this.checkedYear = year;
@@ -108,8 +110,13 @@ export class GraphicsPage implements OnInit {
     filter.dateTo = `${year}-12-31`;
 
     this.searchService.myReceipts(filter).subscribe(
-      (response) => {
+      async (response) => {
         const r: ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if (r.code == 200) {
           const receipt: ReceiptDTO[] = r.data as ReceiptDTO[];
           this.barChartYear(receipt, year);

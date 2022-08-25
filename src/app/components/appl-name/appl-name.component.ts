@@ -22,7 +22,6 @@ export class ApplNameComponent implements OnInit {
   logOut()
   {
     this.loginService.logOut();
-    this.router.navigate(['/login']);
   }
 
 }

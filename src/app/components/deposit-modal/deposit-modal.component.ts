@@ -5,6 +5,7 @@ import { format, parseISO } from 'date-fns';
 import { ReceiptDTO } from 'src/app/model/DTO/receipt-dto';
 import { ResponseDTO } from 'src/app/model/DTO/response-dto';
 import { AlertService } from 'src/app/services/alert.service';
+import { LoginService } from 'src/app/services/login.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class DepositModalComponent implements OnInit
               private searchService: SearchService,
               private alertController: AlertController,
               private alertService: AlertService,
+              private loginService: LoginService,
 
     ) 
     {}
@@ -89,10 +91,15 @@ export class DepositModalComponent implements OnInit
     this.receipt.products = this.newReceiptForm.value.products;
 
     this.searchService.updateCreateReceipt(this.receipt).subscribe
-    (response =>
+    (async response =>
       {
         this.loading = false;        
         const r:ResponseDTO = response as ResponseDTO;
+            if(await this.loginService.checkResponse(r) == false)
+            {
+              return
+            }
+            
             if(r.code == 200)
             {
               this.alertService.showAlert("Ok", "Receipt saved", "Keep browsing", this.alertController)
@@ -119,29 +126,34 @@ export class DepositModalComponent implements OnInit
   {
     this.loading = true;
     this.searchService.deleteReceipt(this.receipt.code).subscribe
-    (response =>
+    (async response =>
       {
         this.loading = false;
 
         const r:ResponseDTO = response as ResponseDTO;
-            if(r.code == 200)
-            {
-              this.alertService.showAlert("Ok", "Receipt deleted", "Keep browsing", this.alertController)
-              this.modalController.dismiss();
-              // this.router.navigate(['search']);       
-            }
-            else
-            {
-              this.alertService.showAlert('Ooops', 'Houston we have a problem', r.message , this.alertController);
-        
-            }
-          }, 
-          error =>
-          {
-            console.log(error)
-            this.loading = false
-            this.alertService.showAlert('Ooops', 'Houston we have a problem', error.error.message , this.alertController);
-          }       
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+    
+        if(r.code == 200)
+        {
+          this.alertService.showAlert("Ok", "Receipt deleted", "Keep browsing", this.alertController)
+          this.modalController.dismiss();
+          // this.router.navigate(['search']);       
+        }
+        else
+        {
+          this.alertService.showAlert('Ooops', 'Houston we have a problem', r.message , this.alertController);
+    
+        }
+      }, 
+      error =>
+      {
+        console.log(error)
+        this.loading = false
+        this.alertService.showAlert('Ooops', 'Houston we have a problem', error.error.message , this.alertController);
+      }       
     )
    
   }

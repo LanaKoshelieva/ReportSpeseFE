@@ -6,6 +6,7 @@ import { ReceiptDTO } from 'src/app/model/DTO/receipt-dto';
 import { ResponseDTO } from 'src/app/model/DTO/response-dto';
 import { UserDTO } from 'src/app/model/DTO/user-dto';
 import { AlertService } from 'src/app/services/alert.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -32,6 +33,7 @@ export class HomePage implements OnInit {
               private profileService: ProfileService,
               private alertService: AlertService,
               private alertController: AlertController,
+              private loginService: LoginService
               )
   {}
 
@@ -53,9 +55,14 @@ export class HomePage implements OnInit {
     currentDay.setDate(1)
     filter.dateFrom = format(currentDay, 'yyyy-MM-dd');    
     this.receiptsService.myReceipts(filter).subscribe(
-      (response) => {
+      async (response) => {
         console.log(response);
         const r: ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if (r.code == 200) {
           const receipt: ReceiptDTO[] = r.data as ReceiptDTO[];
           this.getSomme(receipt);
@@ -84,8 +91,13 @@ export class HomePage implements OnInit {
   getUser()
   { 
     this.profileService.getProfile(this.id).subscribe(
-      (response) => {
+      async (response) => {
         const r: ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if (r.code == 200) {
           const user: UserDTO = r.data as UserDTO;
           this.userName = user.name;

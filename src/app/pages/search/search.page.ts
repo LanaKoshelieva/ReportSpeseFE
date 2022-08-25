@@ -6,6 +6,7 @@ import { FilterDTO } from 'src/app/model/DTO/filter-dto';
 import { ReceiptDTO } from 'src/app/model/DTO/receipt-dto';
 import { ResponseDTO } from 'src/app/model/DTO/response-dto';
 import { AlertService } from 'src/app/services/alert.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -25,7 +26,7 @@ export class SearchPage {
               private alertService: AlertService,
               private alertController: AlertController,
               private modalController: ModalController,
-              private profileService: ProfileService
+              private loginService:LoginService              
               ) {}
 
   ionViewWillEnter() 
@@ -45,9 +46,14 @@ export class SearchPage {
     }
 
     filter.userId = id;
-    this.searchService.myReceipts(filter).subscribe(response =>
+    this.searchService.myReceipts(filter).subscribe(async response =>
       {
         const r:ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if(r.code == 200)
         {
           const receipt:ReceiptDTO[] = r.data as ReceiptDTO[];

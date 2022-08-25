@@ -140,10 +140,15 @@ export class PersonalDataComponent implements OnInit {
     }
     this.loading = true;
     this.profileService.getProfile(this.id).subscribe
-    (response =>
+    (async response =>
       {
         this.loading = false;
         const r:ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if(r.code == 200)
         {
         
@@ -183,11 +188,16 @@ export class PersonalDataComponent implements OnInit {
 
         this.loading = true;   
         this.profileService.editCreateProfile(user).subscribe
-        (response =>
+        (async response =>
           {
             this.loading = false;
 
             const r:ResponseDTO = response as ResponseDTO;
+            if(await this.loginService.checkResponse(r) == false)
+            {
+              return
+            }
+            
             if(r.code == 200)
             {
               if(user.id == null)
@@ -264,14 +274,15 @@ export class PersonalDataComponent implements OnInit {
       {
         this.loading = false;
         const r:ResponseDTO = response as ResponseDTO;
+        if(await this.loginService.checkResponse(r) == false)
+        {
+          return
+        }
+        
         if(r.code == 200)
         {
-          this.loginService.logOut();
-          await this.router.navigate(['login']);
-          this.alertService.showAlert("Ok", "Profile deleted", "Stay safe", this.alertController);
-
-          // await new Promise(f => setTimeout(f, 3000));
-          // this.modalController.dismiss();                
+          await this.loginService.logOut();
+          this.alertService.showAlert("Ok", "Profile deleted", "Stay safe", this.alertController);       
         }
         else
         {

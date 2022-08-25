@@ -38,8 +38,13 @@ export class LoginPage implements OnInit {
   login()
   {
     this.loginService.logIn(this.loginForm.value.email, this.loginForm.value.password).subscribe
-    (response=>{
+    (async response=>{
       const r:ResponseDTO = response as ResponseDTO;
+      if(await this.loginService.checkResponse(r) == false)
+      {
+        return
+      }
+      
       if(r.code == 200)
       {
         const user:UserDTO = r.data as UserDTO;
