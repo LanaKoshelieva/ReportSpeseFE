@@ -1,0 +1,25 @@
+<div>  
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button id="homeBtn" tab="home" (click)="changePage('home')">
+      <ion-icon name="home-outline" color={{colorHome}}></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button id="searchBtn" tab="search" (click)="changePage('search')">
+      <ion-icon name="search-outline" color={{colorSearch}}></ion-icon>
+    </ion-tab-button>
+
+    <ion-fab-button id="addBtn" (click)="newReceipt()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <ion-tab-button id="graphicsBtn" tab="graphics"  (click)="changePage('graphics')">
+      <ion-icon name="stats-chart-outline" color={{colorGraphics}}></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button id="accountBtn" tab="account"  (click)="changePage('profile')">
+      <ion-icon name="person-outline" color={{colorUser}}></ion-icon>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</div>

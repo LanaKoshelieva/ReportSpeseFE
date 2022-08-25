@@ -1,0 +1,42 @@
+<ion-card class="ion-no-padding">
+    <ion-row>
+        <ion-col>
+
+            <ion-row >
+                <ion-col>
+                    <ion-row class="seller"><p>{{seller}}</p></ion-row>
+                </ion-col>
+            </ion-row>
+
+            <hr>
+
+            <ion-row>
+                <ion-col>
+                    <ion-row class="category"><p>{{categoryText()}}</p></ion-row>
+                </ion-col>
+            </ion-row>
+            
+
+            <ion-row>
+                <ion-col>
+                    <ion-row class="products"><p>{{productsText()}}</p></ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col >
+                    <ion-row class="total"><p>{{total}} €</p></ion-row>
+                </ion-col>
+            </ion-row>
+
+            <hr>
+
+            <ion-row>
+                <ion-col>
+                    <ion-row class="date">{{date}}</ion-row>
+                </ion-col>
+            </ion-row>
+
+        </ion-col>
+    </ion-row>
+</ion-card>

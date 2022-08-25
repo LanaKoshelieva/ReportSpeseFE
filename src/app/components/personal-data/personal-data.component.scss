@@ -1,0 +1,31 @@
+ion-grid
+{
+  max-width: 720px; 
+}
+
+.my-item
+{
+    border: 1px solid rgb(220, 224, 199);
+    border-radius: 5px;
+    margin: 0.3rem;
+}
+
+ion-modal {
+  --width: 290px;
+  --height: 382px;
+  --border-radius: 8px;
+  background: rgba(44, 39, 45, 0.2) ;
+
+}
+
+
+ion-row
+{
+    justify-content: center;
+}
+
+error-popover 
+{
+    --width: 80px;
+}
+

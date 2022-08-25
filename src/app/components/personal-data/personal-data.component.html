@@ -1,0 +1,108 @@
+  <ion-grid >
+    <form [formGroup]="profileForm" class="center">
+  
+      <ion-row >
+        <ion-col class="ion-no-padding">
+  
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none" class="my-item">
+                <ion-input id="name" placeholder="Name" type="text" formControlName="name"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none" class="my-item">
+                <ion-input id="surname" placeholder="Surname" type="text" formControlName="surname"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>          
+          
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none"  class="my-item">
+                <ion-input id="open-profile-modal" placeholder="BirthDate" type="text" formControlName="bDay" >
+                </ion-input>
+              </ion-item>
+              <ion-modal trigger="open-profile-modal">
+                <ion-content class="modal-content">
+                  <ion-datetime #date *ngIf="showPicker" presentation="date" showDefaultButtons="true"
+                  (ionChange)="dateChanged(date.value)" ></ion-datetime>
+                </ion-content>
+              </ion-modal>
+              
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-list class="ion-no-padding">
+                <ion-item lines="none" class="my-item">
+                  <ion-select interface="popover" placeholder="Select gender" id="gender" placeholder="Gender" type="text" formControlName="gender" style=" --placeholder-opacity: 50%">
+                    <ion-select-option value="male">Male</ion-select-option>
+                    <ion-select-option value="female">Female</ion-select-option>
+                    <ion-select-option value="nBinary">Non binary</ion-select-option>
+                    <ion-select-option value="tGender">Transgender</ion-select-option>
+                    <ion-select-option value="intersex">Intersex</ion-select-option>
+                    <ion-select-option value="noRespond">Prefer not to respond</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none" class="my-item">
+                <ion-input id="email" placeholder="Email" type="email" formControlName="email"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row [hidden]="hidden" >
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none" class="my-item">
+                <ion-input id="password" placeholder="Password" type="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"  (ionChange)="controlPasswords()"></ion-input>
+                <ion-icon [name]="eyeIcon1" slot="end" (click)="togglePassword()"></ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row [hidden]="hidden" >
+            <ion-col class="ion-no-padding">
+              <ion-item lines="none" class="my-item" id="confirmPass">
+                <ion-input id="confirmPassword" placeholder="Confirm password" type="password" formControlName="confirmPassword" [type]="showConfirm ? 'text' : 'password'"  (ionChange)="controlPasswords()"></ion-input>
+                <ion-icon [name]="eyeIcon2" slot="end" (click)="toggleConfirm()"></ion-icon>
+              </ion-item>
+            </ion-col>
+          </ion-row>  
+          
+          <ion-row [hidden]="match">
+            <p>
+              Password non sono uguali
+            </p>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p class="question-p" [hidden]="!visible">{{question}} <a href={{link}}>{{action}}</a></p>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-button [disabled]="!profileForm.valid " class="edit-button" (click)="onClick()">{{buttonText}}</ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="ion-no-padding">
+              <ion-button [hidden]="!profilePage" class="delete-button" color="danger" (click)="confirmAlert()">Delete profile</ion-button>
+            </ion-col>
+          </ion-row>
+  
+        </ion-col>
+      </ion-row>
+  
+    </form>
+  </ion-grid>

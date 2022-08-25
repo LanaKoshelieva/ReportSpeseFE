@@ -1,0 +1,19 @@
+<ion-grid id="name-grid">
+
+  <div class="name-container">
+    <ion-row class="logout-row" style="justify-content: center;">
+      <ion-col>
+        <button [hidden]="!visible" (click)="logOut()">Log out</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col size="12">
+      <ion-row class="name-row">
+        <p class="app-name">My Expenses Manager</p>
+      </ion-row>
+    </ion-col>      
+  </ion-row>
+  </div>
+
+</ion-grid>
+

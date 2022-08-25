@@ -1,0 +1,121 @@
+ion-card
+{
+    width: auto;
+    height: 190px;
+    border: 1px solid rgb(220, 224, 199);
+    border-radius: 10px;
+}
+
+hr
+{
+    border-top: 1px solid black;
+    margin: 0 20px 0 20px;
+    opacity: .15;
+}
+
+p
+{
+    padding: 0;
+    margin: 0;
+}
+
+// .overflow
+// {
+//     text-overflow: ellipsis;
+//     overflow: hidden;
+//     justify-content: center;
+//     // white-space: nowrap;     
+//     height: 40px; 
+//     width: auto;  
+//     padding: 0;
+// }
+
+.seller
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    font-weight: 600;
+    font-size: 1em;
+    height: 40px; 
+    justify-content: center; 
+    align-items: center;
+
+}
+
+.category
+{
+    height: 40px; 
+    justify-content: start; 
+    font-weight: 500;
+    color: black;
+    padding: 8px 20px 0 20px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.total
+{
+    justify-content: end;  
+    padding: 8px 20px 8px 0; 
+    font-size: 100%;
+    color: black;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.date
+{
+    // padding-top: 3px; 
+    height: 30px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    font-size: 0.9em;
+    justify-content: center; 
+    align-items: center;
+}
+
+.products
+{
+    height: 40px; 
+    justify-content: start; 
+    font-weight: 400;
+    padding: 8px 20px 0 20px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+}
+
+// .category
+// {
+    //     color: black;
+//     font-size: 1em;
+//     padding-top: 5px;
+//     padding-left: 6px;
+//     font-weight: 600;
+//     height: 60px;    
+// }
+
+
+// .price
+// {
+//     padding-left: 6px;
+//     color: rgb(100, 100, 100);
+//     font-size: 16px;
+//     font-style: italic;
+//     height: 20px;
+//     font-weight: 600;
+// }
+
+// .date
+// {
+//     font-family: Verdana, Geneva, Tahoma, sans-serif;
+//     font-weight: 500;
+//     font-size: 0.75em;
+//     padding-top: 5px;
+//     padding-right: 0;
+//     letter-spacing: 0;
+//     color: black;  
+// }
+
+ion-col
+{
+    padding: 0;
+}

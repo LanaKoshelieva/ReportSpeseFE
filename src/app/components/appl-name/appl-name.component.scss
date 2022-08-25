@@ -1,0 +1,51 @@
+.name-container
+{
+    max-width: 900px;
+    height: 75px;
+    text-transform: uppercase;
+    font-family: Candara;
+
+}
+
+#name-grid
+{
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    height: 150px;
+}
+
+
+button
+{
+    font-size: 14px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+    background-color: unset;
+    padding: 10px;
+}
+
+.app-name
+{
+    font-size: xx-large;
+    font-weight: 600;
+    margin: 10px 0 0 0
+
+}
+
+.name-row
+{
+    justify-content: end;
+}
+
+.logout-row
+{
+    text-align: end !important;
+    text-decoration: underline;
+    background-color: #FCC03E;
+    margin: 0;
+    height: 45px;
+    align-items: flex-end;
+}
+

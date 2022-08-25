@@ -1,0 +1,35 @@
+
+.container
+{
+    max-width:  900px;
+}
+
+ion-grid
+{
+  max-width: 720px; 
+}
+
+ion-img
+{
+  width: 300px;
+  height: 300px;
+}
+
+.my-item
+{
+    border: 1px solid rgb(220, 224, 199);
+    border-radius: 5px;
+    margin: 0.3rem;
+}
+
+.my-button
+{
+  height: 49px;
+}
+
+ion-row
+{
+    justify-content: center;
+    align-items: center;
+}
+

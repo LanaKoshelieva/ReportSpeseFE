@@ -1,0 +1,112 @@
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="newReceiptForm">
+
+      <ion-row>
+        <ion-col size="12" sizeSm="12" sizeLg="12" sizeMd="12" >
+          <ion-item lines="none" class="my-item">
+            <ion-input id="seller" placeholder="Seller" type="text" formControlName="seller"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6" >
+          <ion-list class="ion-no-padding">
+            <ion-item lines="none" class="my-item">
+              <ion-select id="category" placeholder="Category" slot="start" interface="popover" type="text"
+                formControlName="category">
+                <ion-select-option value="Finance & insurance">Finance & insurance</ion-select-option>
+                <ion-select-option value="Restaurants & clubs">Restaurants & clubs</ion-select-option>
+                <ion-select-option>Grocery & food</ion-select-option>
+                <ion-select-option>Health care & pharmacy</ion-select-option>
+                <ion-select-option>Shopping</ion-select-option>
+                <ion-select-option>Taxes & fines</ion-select-option>
+                <ion-select-option>Travel & vacation</ion-select-option>
+                <ion-select-option>Transport</ion-select-option>
+                <ion-select-option>Education</ion-select-option>
+                <ion-select-option>Sport & equipment</ion-select-option>
+                <ion-select-option>Subscriptions & donations</ion-select-option>
+                <ion-select-option>Multimedia & electronics</ion-select-option>
+                <ion-select-option>Necessary things for home</ion-select-option>
+                <ion-select-option>Home & Furniture</ion-select-option>
+                <ion-select-option>Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6" >
+          <ion-list class="ion-no-padding">
+            <ion-item lines="none" class="my-item">
+              <ion-select id="pType" placeholder="Payment type" slot="start" interface="popover" type="text"
+                formControlName="paymentType">
+                <ion-select-option value="cash">Cash</ion-select-option>
+                <ion-select-option value="dCard">Debit Card</ion-select-option>
+                <ion-select-option value="cCard">Credit Card</ion-select-option>
+                <ion-select-option value="voucher">Voucher</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6">
+          <ion-item lines="none" class="my-item" (click)="showPickerFrom= true">
+            <ion-input id="date-from-modal" placeholder="From" type="text" formControlName="dateFrom"
+              [value]="formattedDateFrom">
+            </ion-input>
+          </ion-item>
+          <ion-modal trigger="date-from-modal">
+            <ion-content class="modal-content">
+              <ion-datetime *ngIf="showPickerFrom" #date size="cover" presentation="date" showDefaultButtons="true"
+                (ionChange)="dateChangedFrom(date.value)">
+              </ion-datetime>
+            </ion-content>
+          </ion-modal>
+        </ion-col>
+
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6">
+          <ion-item lines="none" class="my-item" (click)="showPickerTo= true">
+            <ion-input id="date-to-modal" placeholder="To" type="text" formControlName="dateTo"
+              [value]="formattedDateTo">
+            </ion-input>
+          </ion-item>
+          <ion-modal trigger="date-to-modal">
+            <ion-content class="modal-content">
+              <ion-datetime *ngIf="showPickerTo" #date size="cover" presentation="date" showDefaultButtons="true"
+                (ionChange)="dateChangedTo(date.value)">
+              </ion-datetime>
+            </ion-content>
+          </ion-modal>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6">
+          <ion-item lines="none" class="my-item">
+            <ion-input id="totalMin" placeholder="Price min" type="text" formControlName="totalMin" inputmode="numeric">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" sizeSm="6" sizeLg="6" sizeMd="6">
+          <ion-item lines="none" class="my-item">
+            <ion-input id="totalMax" placeholder="Price max" type="text" formControlName="totalMax" inputmode="numeric">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button type="reset" (click)="reset()"> Reset </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button type="button" (click)="search()"> Search </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+</ion-content>
