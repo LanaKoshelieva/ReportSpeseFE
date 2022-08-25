@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { UserCommand } from 'src/app/model/command/user-command';
 import { CustomValidators } from 'src/app/utilities/custom-validator';
 import { format, parseISO } from 'date-fns';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -51,7 +52,8 @@ export class PersonalDataComponent implements OnInit {
               private alertController: AlertController,
               private modalController: ModalController,
               private router: Router,
-              private userService: ProfileService,              
+              private userService: ProfileService, 
+              private loginService: LoginService             
               )
               {}
 
@@ -264,7 +266,7 @@ export class PersonalDataComponent implements OnInit {
         const r:ResponseDTO = response as ResponseDTO;
         if(r.code == 200)
         {
-          localStorage.removeItem("userId")
+          this.loginService.logOut();
           await this.router.navigate(['login']);
           this.alertService.showAlert("Ok", "Profile deleted", "Stay safe", this.alertController);
 

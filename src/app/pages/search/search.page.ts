@@ -30,21 +30,11 @@ export class SearchPage {
 
   ionViewWillEnter() 
   {
-    if(this.profileService.checkLogged() == false)
-    {
-      return;
-    }
     this.getMyReceipts(this.id);
   }
 
   ngOnInit() 
   {
-    if(this.profileService.checkLogged() == false)
-    {
-      console.log("aaa")
-      return;
-    }
-    console.log("bbb")
   }
 
   getMyReceipts(id:number, filter:FilterDTO = null)

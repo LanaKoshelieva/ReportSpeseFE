@@ -22,7 +22,7 @@ export class GraphicsPage implements OnInit {
 
   barChart1: any;
   barChart2: any;
-
+  checkedYear:string;
 
   id: number = +localStorage.getItem('userId');
 
@@ -34,9 +34,7 @@ export class GraphicsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.profileService.checkLogged() == false) {
-      return;
-    }
+
   }
 
   async presentAlert() 
@@ -64,27 +62,27 @@ export class GraphicsPage implements OnInit {
           label: '2022',
           type: 'radio',
           value: '2022',
-          checked: selectedValue == "2022"
+          checked: this.checkedYear == '2022' 
         },
         {
           label: '2021',
           type: 'radio',
           value: '2021',
-          checked: selectedValue == "2021"
+          checked: this.checkedYear == '2021' 
 
         },
         {
           label: '2020',
           type: 'radio',
           value: '2020',
-          checked: selectedValue == "2020"
+          checked: this.checkedYear == '2020' 
 
         },
         {
           label: '2019',
           type: 'radio',
           value: '2019',
-          checked: selectedValue == "2019"
+          checked: this.checkedYear == '2019' 
         }
       ],
       
@@ -99,6 +97,7 @@ export class GraphicsPage implements OnInit {
 
   changeYear(year)
   {
+    this.checkedYear = year;
     this.getReceipts(+year) 
   }
 
@@ -144,7 +143,7 @@ export class GraphicsPage implements OnInit {
     let months: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     for (let r of receipts) {
       const date = new Date(r.date);
-      months[date.getMonth() - 1] += r.total;
+      months[date.getMonth()] += r.total;
     }
 
     this.barChart1 = new Chart(this.barCanvas1.nativeElement, {

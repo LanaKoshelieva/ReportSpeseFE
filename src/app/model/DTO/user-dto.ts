@@ -6,6 +6,7 @@ export class UserDTO
     name: string;
     surname: string;
     email: string;
+    passwordHash: string;
     region: string;
     sex: string;
     birthDate: string;

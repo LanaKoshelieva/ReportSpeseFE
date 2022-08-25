@@ -1,10 +1,22 @@
 <ion-content> 
   <ion-grid class="ion-no-padding container">
-
       <app-appl-name></app-appl-name>
+
+      <ion-row>
+        <ion-col size="12" sizeSm="12" sizeLg="5" sizeMd="5" class="my-col">
+          <ion-row><h1>Hellooo, {{userName}}</h1></ion-row>
+          <ion-row *ngIf="difference < 0"><p>In this month you have spent <span style="color: green; font-weight: 600;">{{(-difference).toFixed(2)}} €</span> less than last month </p></ion-row>
+          <ion-row *ngIf="difference > 0"><p>In this month you have spent <span style="color: red; font-weight: 600;">{{difference.toFixed(2)}} €</span> more than last month </p></ion-row>
+          <ion-row *ngIf="difference == 0"><p>In this month you have spent <span style="font-weight: 600;">{{lastMonth.toFixed(2)}} €</span>. The same amount of last month </p></ion-row>
+        </ion-col>
+        <ion-col size="12" sizeSm="12" sizeLg="5" sizeMd="5" class="my-col home-col">
+          <ion-img class="home-img" src="../../../assets/home.svg"></ion-img>
+        </ion-col>
+      </ion-row>
 
 
   </ion-grid>
 </ion-content>
 
 <app-footer page="home"></app-footer>
+

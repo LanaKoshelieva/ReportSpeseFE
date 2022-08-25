@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { UserCommand } from '../model/command/user-command';
-import { Router } from '@angular/router';
+import { requestOptions } from './header';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   editProfile(user:UserCommand)
   {
-    return this.http.put("http://localhost:8080/my_expenses_manager/api/user/update", user)
+    return this.http.put("http://localhost:8080/my_expenses_manager/api/user/update", user, requestOptions())
   }
 
   deleteProfile(id:number)
   {
-    return this.http.delete("http://localhost:8080/my_expenses_manager/api/user/delete/" + id)
+    return this.http.delete("http://localhost:8080/my_expenses_manager/api/user/delete/" + id, requestOptions())
   }
 
   getProfile(id:number)
   {
-    return this.http.get("http://localhost:8080/my_expenses_manager/api/user/" + id)
+    return this.http.get("http://localhost:8080/my_expenses_manager/api/user/" + id, requestOptions())
   }
 
   createProfile(user:UserCommand)
@@ -42,16 +42,5 @@ export class ProfileService {
     }
   }
 
-  checkLogged()
-  {
-    console.log("logged: ", localStorage.getItem("userId"))
-    if(localStorage.getItem("userId") == null)
-    {
-      console.log("che vuoi")
-      this.router.navigate(['/login']);
-      return false;
-    }
-    return true;
-  }
 }
 

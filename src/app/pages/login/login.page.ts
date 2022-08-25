@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   passwordToggleIcon = "eye-outline"
 
   constructor(private fb:FormBuilder, 
-              private loginservice:LoginService, 
+              private loginService:LoginService, 
               public alertController: AlertController, 
               private router:Router,
               private alertService: AlertService) 
@@ -37,13 +37,13 @@ export class LoginPage implements OnInit {
 
   login()
   {
-    this.loginservice.logIn(this.loginForm.value.email, this.loginForm.value.password).subscribe
+    this.loginService.logIn(this.loginForm.value.email, this.loginForm.value.password).subscribe
     (response=>{
       const r:ResponseDTO = response as ResponseDTO;
       if(r.code == 200)
       {
-        const utente:UserDTO = r.data as UserDTO;
-        localStorage.setItem("userId", utente.id.toString());
+        const user:UserDTO = r.data as UserDTO;
+        this.loginService.saveUser(user)
         this.router.navigate(['/home']);
       }
       else

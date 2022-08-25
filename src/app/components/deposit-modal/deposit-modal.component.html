@@ -1,6 +1,6 @@
 <ion-content>
   <ion-grid>
-    <form [formGroup]="newReceiptForm">
+    <form [formGroup]="newReceiptForm" (ngSubmit)="addReceipt()">
 
       <ion-row>
         <ion-col size="12" sizeSm="12" sizeLg="12" sizeMd="12">

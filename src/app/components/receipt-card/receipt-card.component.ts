@@ -28,7 +28,7 @@ export class ReceiptCardComponent implements OnInit {
     this.total = this.receipt.total.toFixed(2) ;
     this.date = this.receipt.date;
     this.paymentType = this.receipt.paymentType;
-    this.products = this.receipt.product;
+    this.products = this.receipt.products;
   }
 
   productsText()

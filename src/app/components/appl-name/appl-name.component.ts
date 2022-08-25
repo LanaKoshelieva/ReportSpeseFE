@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-appl-name',
@@ -12,24 +13,16 @@ export class ApplNameComponent implements OnInit {
   
   userId:number = +localStorage.getItem("userId")
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private loginService:LoginService
+              ) { }
 
   ngOnInit() {}
 
-  ionViewWillEnter() 
-  {
-    this.showLogout();
-  }
-
   logOut()
   {
-    localStorage.removeItem("userId");
+    this.loginService.logOut();
     this.router.navigate(['/login']);
-  }
-
-  showLogout()
-  {
-    
   }
 
 }

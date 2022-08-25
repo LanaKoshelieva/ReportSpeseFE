@@ -51,18 +51,18 @@ export class DepositModalComponent implements OnInit
 
     if (this.receipt !== null)
     {
+      // this.newReceiptForm.patchValue(this.receipt)
       this.newReceiptForm.patchValue({category:this.receipt.category})
       this.newReceiptForm.patchValue({seller:this.receipt.seller})
       this.newReceiptForm.patchValue({total:this.receipt.total})
       this.newReceiptForm.patchValue({paymentType:this.receipt.paymentType})
       this.newReceiptForm.patchValue({date:this.receipt.date})
-      this.newReceiptForm.patchValue({products:this.receipt.product})
+      this.newReceiptForm.patchValue({products:this.receipt.products})
       this.canDelete = true;
       this.buttonText = "Edit receipt";
 
     }
   }
-
 
   dateChanged(value)
   {
@@ -86,7 +86,7 @@ export class DepositModalComponent implements OnInit
     this.receipt.total = +this.newReceiptForm.value.total;
     this.receipt.date = this.newReceiptForm.value.date;
     this.receipt.paymentType = this.newReceiptForm.value.paymentType;
-    this.receipt.product = this.newReceiptForm.value.products;
+    this.receipt.products = this.newReceiptForm.value.products;
 
     this.searchService.updateCreateReceipt(this.receipt).subscribe
     (response =>

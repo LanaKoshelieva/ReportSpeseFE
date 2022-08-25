@@ -15,10 +15,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() 
   {
-    if(this.profileService.checkLogged() == false)
-    {
-      return;
-    }
+    
   }
 
 
